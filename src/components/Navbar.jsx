@@ -22,7 +22,7 @@ export default function Navbar() {
             Products
           </li>
           <li className="hover:text-purple-600 transition cursor-pointer">
-            About
+            Add Product
           </li>
           <li className="hover:text-purple-600 transition cursor-pointer">
             Contact

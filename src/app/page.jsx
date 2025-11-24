@@ -1,12 +1,9 @@
 import { FeaturesSection } from '@/components/FeaturesSection';
-import Footer from '@/components/Footer';
 import { HeroSection } from '@/components/HeroSection';
-import Navbar from '@/components/Navbar';
 
 export default function Home() {
   return (
     <div className="bg-zinc-50 font-sans dark:bg-black">
-      <Navbar />
       <HeroSection
         imageUrl="https://images.unsplash.com/photo-1602526432604-029a709e131c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         extraImages={[
@@ -17,8 +14,6 @@ export default function Home() {
         ]}
       />
       <FeaturesSection />
-
-      <Footer />
     </div>
   );
 }
