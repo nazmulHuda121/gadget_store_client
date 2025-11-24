@@ -6,7 +6,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="w-full backdrop-blur bg-white/70 shadow-sm sticky top-0 z-50">
+    <nav className="w-full backdrop-blur bg-white/80 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <h1 className="text-3xl font-extrabold text-purple-600">
