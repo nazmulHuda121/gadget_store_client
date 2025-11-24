@@ -1,6 +1,8 @@
+import BannerSection from '@/components/BannerSection';
 import { FeaturesSection } from '@/components/FeaturesSection';
 import { HeroSection } from '@/components/HeroSection';
 import ProductSection from '@/components/ProductSection';
+import TestimonialSection from '@/components/TestimonialSection';
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       />
       <FeaturesSection />
       <ProductSection />
+      <BannerSection />
+      <TestimonialSection />
     </div>
   );
 }

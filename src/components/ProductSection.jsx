@@ -4,10 +4,10 @@ export default async function ProductSection() {
   // Fetch data from backend
   const res = await fetch('http://localhost:5000/products');
   const data = await res.json();
-  const products = data.result.slice(0, 6); // Only first 6 products
+  const products = data.result.slice(0, 6);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0F1629] to-[#0A0F1F]">
+    <section className="py-20 bg-gradient-to-b from-[#0A0F1F] to-[#654929]">
       <div className="max-w-7xl mx-auto px-5">
         <h2 className="text-4xl font-bold text-white text-center mb-16">
           Featured <span className="text-blue-400">Products</span>
@@ -45,7 +45,7 @@ export default async function ProductSection() {
                 </p>
 
                 {/* View Details Button */}
-                <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-all text-white px-4 py-2 rounded-xl shadow-lg">
+                <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-all text-white px-4 py-2 rounded-xl shadow-lg cursor-pointer">
                   <FaEye />
                   View Details
                 </button>

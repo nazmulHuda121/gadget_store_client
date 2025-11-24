@@ -16,7 +16,7 @@ export function HeroSection({ imageUrl, extraImages = [] }) {
     >
       <div className="backdrop-blur-sm bg-white/20">
         <div className="max-w-7xl mx-auto px-6 py-28 text-center relative z-10">
-          <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-600 animate-fadeInUp">
+          <h1 className="text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-700 animate-fadeInUp">
             Discover Next-Gen Gadgets
           </h1>
 
