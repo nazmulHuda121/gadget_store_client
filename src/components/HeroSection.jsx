@@ -25,7 +25,7 @@ export function HeroSection({ imageUrl, extraImages = [] }) {
             modern innovation.
           </p>
 
-          <button className="mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl text-lg font-semibold shadow-lg hover:opacity-90 transition animate-fadeInUp delay-300 hover:scale-110 cursor-pointer">
+          <button className="mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl text-lg font-semibold shadow-lg hover:opacity-90 animate-fadeInUp hover:scale-110 transition-all cursor-pointer">
             Explore Products
           </button>
 
@@ -42,7 +42,7 @@ export function HeroSection({ imageUrl, extraImages = [] }) {
               >
                 <img
                   src={img}
-                  className="w-full h-full object-cover cursor-pointer hover:scale-150"
+                  className="w-full h-full object-cover cursor-pointer hover:scale-150 transition-all duration-300"
                 />
               </div>
             ))}

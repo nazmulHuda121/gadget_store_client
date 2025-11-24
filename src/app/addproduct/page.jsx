@@ -80,7 +80,7 @@ export default function AddProduct() {
               name="title"
               value={form.title}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
               placeholder="Product title"
             />
           </div>
@@ -94,7 +94,7 @@ export default function AddProduct() {
               name="shortDesc"
               value={form.shortDesc}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
               placeholder="Short description"
             />
           </div>
@@ -108,7 +108,7 @@ export default function AddProduct() {
               name="fullDesc"
               value={form.fullDesc}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 h-32 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 h-32 focus:ring-2 focus:ring-purple-500"
               placeholder="Full product details..."
             ></textarea>
           </div>
@@ -123,7 +123,7 @@ export default function AddProduct() {
               name="price"
               value={form.price}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
               placeholder="Product price"
             />
           </div>
@@ -136,7 +136,7 @@ export default function AddProduct() {
               name="date"
               value={form.date}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
@@ -149,7 +149,7 @@ export default function AddProduct() {
               name="priority"
               value={form.priority}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
             >
               <option value="high">High</option>
               <option value="medium">Medium</option>
@@ -166,7 +166,7 @@ export default function AddProduct() {
               name="imageUrl"
               value={form.imageUrl}
               onChange={handleChange}
-              className="w-full p-3 rounded-lg border bg-white/60 focus:ring-2 focus:ring-purple-500"
+              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
               placeholder="https://example.com/image.jpg"
             />
           </div>
