@@ -2,8 +2,19 @@
 
 import { FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import { use } from 'react';
+import { AuthContext } from '@/AuthProvider/AuthContext';
 
 export default function LoginPage() {
+  const { logedInWithGoogle } = use(AuthContext);
+  const handleGoogleLogin = () => {
+    console.log('.......');
+    logedInWithGoogle()
+      .then(() => {
+        console.log('Loged in successfully complete');
+      })
+      .then((err) => console.log(err));
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
@@ -51,7 +62,10 @@ export default function LoginPage() {
         </div>
 
         {/* Google Login */}
-        <button className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3">
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3"
+        >
           <FaGoogle className="text-xl" />
           Continue with Google
         </button>
