@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 export default function AddProduct() {
   const [form, setForm] = useState({
@@ -36,7 +37,14 @@ export default function AddProduct() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success('Product added to MongoDB!');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Product added to MongoDB!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         setForm({
           title: '',
           shortDesc: '',

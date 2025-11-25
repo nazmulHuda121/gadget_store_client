@@ -26,7 +26,7 @@ const ManageProducts = () => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
+      confirmButtonText: 'Yes! Delete',
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/products/${id}`, { method: 'DELETE' })
