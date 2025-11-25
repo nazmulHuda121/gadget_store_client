@@ -1,68 +1,61 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import Link from 'next/link';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const router = useRouter();
+  const [form, setForm] = useState({ email: '', password: '' });
 
-  const handleCredentialsLogin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    await signIn('credentials', {
-      email,
-      password,
-      callbackUrl: '/',
+
+    const res = await signIn('credentials', {
+      email: form.email,
+      password: form.password,
+      redirect: false,
     });
+
+    if (!res.error) {
+      router.push('/');
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-700 px-4">
-      <div className="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-2xl shadow-2xl w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">
-          Welcome Back
+    <div className="min-h-screen flex justify-center items-center bg-gray-900">
+      <form className="bg-gray-800 p-10 rounded-xl max-w-sm w-full">
+        <h2 className="text-3xl font-bold text-white mb-6 text-center">
+          Login
         </h2>
 
-        <form onSubmit={handleCredentialsLogin} className="space-y-4">
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <input
+          className="w-full p-3 rounded mb-4 bg-gray-700 text-white"
+          placeholder="Email"
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        />
 
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
-          >
-            Login
-          </button>
-        </form>
-
-        <p className="text-center text-gray-200 my-4">OR</p>
+        <input
+          type="password"
+          className="w-full p-3 rounded mb-4 bg-gray-700 text-white"
+          placeholder="Password"
+          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        />
 
         <button
-          onClick={() => signIn('google', { callbackUrl: '/' })}
-          className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg font-semibold"
+          onClick={handleLogin}
+          className="w-full bg-blue-600 p-3 rounded text-white"
+        >
+          Login
+        </button>
+
+        <button
+          onClick={() => signIn('google')}
+          className="w-full bg-red-500 mt-4 p-3 rounded text-white"
         >
           Login with Google
         </button>
-
-        <p className="text-center text-white mt-4">
-          Dont have an account?
-          <Link href="/register" className="text-blue-400 ml-1">
-            Register
-          </Link>
-        </p>
-      </div>
+      </form>
     </div>
   );
 }
