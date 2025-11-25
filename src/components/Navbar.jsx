@@ -23,7 +23,7 @@ export default function Navbar() {
             Home
           </Link>
           <li className="hover:text-purple-600 transition cursor-pointer">
-            Products
+            Manage Products
           </li>
           <Link
             href={'/addproduct'}
@@ -40,14 +40,14 @@ export default function Navbar() {
         <div className="hidden md:flex gap-4">
           <Link
             href={'/login'}
-            className="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+            className="px-6 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
           >
-            Login
+            Log In
           </Link>
 
-          <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+          {/* <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
             Sign Up
-          </button>
+          </button> */}
         </div>
 
         {/* Mobile Hamburger */}
@@ -87,9 +87,9 @@ export default function Navbar() {
               Login
             </Link>
 
-            <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+            {/* <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
               Sign Up
-            </button>
+            </button> */}
           </div>
         </div>
       )}
