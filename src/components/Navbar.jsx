@@ -22,14 +22,14 @@ export default function Navbar() {
 
           <>
             <Link
-              href="/manageproduct"
+              href="/manage-products"
               className="hover:text-purple-600 transition"
             >
               Manage Products
             </Link>
 
             <Link
-              href="/addproduct"
+              href="/add-product"
               className="hover:text-purple-600 transition"
             >
               Add Product
