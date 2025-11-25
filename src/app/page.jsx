@@ -2,7 +2,7 @@ import BannerSection from '@/components/BannerSection';
 import { FeaturesSection } from '@/components/FeaturesSection';
 import { HeroSection } from '@/components/HeroSection';
 import TestimonialSection from '@/components/TestimonialSection';
-import ProductSection from './products/page';
+import Products from './products/page';
 
 export default function Home() {
   return (
@@ -17,8 +17,7 @@ export default function Home() {
         ]}
       />
       <FeaturesSection />
-      {/* <ProductSection /> */}
-      <ProductSection />
+      <Products />
       <BannerSection />
       <TestimonialSection />
     </div>

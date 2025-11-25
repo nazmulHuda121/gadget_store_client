@@ -1,30 +1,40 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
+import bcrypt from 'bcryptjs';
+import { findUserByEmail } from '@/models/User';
 
 export const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: { label: 'Email', type: 'text' },
-        password: { label: 'Password', type: 'password' },
+        email: {},
+        password: {},
       },
-      async authorize(credentials) {
-        // Static example login
-        const adminUser = {
-          email: 'admin@test.com',
-          password: '123456',
-          name: 'Admin User',
-        };
 
-        if (
-          credentials.email === adminUser.email &&
-          credentials.password === adminUser.password
-        ) {
-          return adminUser;
+      async authorize(credentials) {
+        const user = await findUserByEmail(credentials.email);
+
+        if (!user) {
+          throw new Error('No user found!');
         }
 
-        return null;
+        const isMatch = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isMatch) {
+          throw new Error('Wrong password!');
+        }
+
+        return user;
       },
     }),
   ],
@@ -33,11 +43,22 @@ export const authOptions = {
     strategy: 'jwt',
   },
 
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.user = user;
+      return token;
+    },
+
+    async session({ session, token }) {
+      session.user = token.user;
+      return session;
+    },
+  },
+
   pages: {
-    signIn: '/login', // custom login page
+    signIn: '/login',
   },
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };
