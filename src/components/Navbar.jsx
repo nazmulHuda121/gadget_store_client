@@ -10,27 +10,32 @@ export default function Navbar() {
     <nav className="w-full backdrop-blur bg-white/80 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href={'/'} className="text-3xl font-extrabold text-purple-600">
+        <Link href="/" className="text-3xl font-extrabold text-purple-600">
           Gadget<span className="text-blue-600">Store</span>
         </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 text-lg font-semibold text-gray-700">
-          <Link
-            href={'/'}
-            className="hover:text-purple-600 transition cursor-pointer"
-          >
+          <Link href="/" className="hover:text-purple-600 transition">
             Home
           </Link>
-          <li className="hover:text-purple-600 transition cursor-pointer">
-            Manage Products
-          </li>
-          <Link
-            href={'/addproduct'}
-            className="hover:text-purple-600 transition cursor-pointer"
-          >
-            Add Product
-          </Link>
+
+          <>
+            <Link
+              href="/manageproduct"
+              className="hover:text-purple-600 transition"
+            >
+              Manage Products
+            </Link>
+
+            <Link
+              href="/addproduct"
+              className="hover:text-purple-600 transition"
+            >
+              Add Product
+            </Link>
+          </>
+
           <li className="hover:text-purple-600 transition cursor-pointer">
             Contact
           </li>
@@ -39,15 +44,18 @@ export default function Navbar() {
         {/* Desktop Buttons */}
         <div className="hidden md:flex gap-4">
           <Link
-            href={'/login'}
+            href="/login"
             className="px-6 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
           >
             Log In
           </Link>
 
-          {/* <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-            Sign Up
-          </button> */}
+          <button
+            onClick={() => signOut({ callbackUrl: '/' })}
+            className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+          >
+            Logout
+          </button>
         </div>
 
         {/* Mobile Hamburger */}
@@ -62,37 +70,51 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden bg-white px-4 pb-4 shadow-inner">
-          <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
-            <li className="hover:text-purple-600 transition cursor-pointer">
-              Home
-            </li>
-            <li className="hover:text-purple-600 transition cursor-pointer">
-              Products
-            </li>
-            <li className="hover:text-purple-600 transition cursor-pointer">
-              About
-            </li>
-            <li className="hover:text-purple-600 transition cursor-pointer">
-              Contact
-            </li>
-          </ul>
 
-          <div className="mt-4 flex flex-col gap-3">
+      <div className="md:hidden bg-white px-4 pb-4 shadow-inner">
+        <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
+          <Link href="/" className="hover:text-purple-600 transition">
+            Home
+          </Link>
+
+          <>
             <Link
-              href={'/login'}
-              className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+              href="/manageproduct"
+              className="hover:text-purple-600 transition"
             >
-              Login
+              Manage Products
             </Link>
 
-            {/* <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
-              Sign Up
-            </button> */}
-          </div>
+            <Link
+              href="/addproduct"
+              className="hover:text-purple-600 transition"
+            >
+              Add Product
+            </Link>
+          </>
+
+          <Link href="/contact" className="hover:text-purple-600 transition">
+            Contact
+          </Link>
+        </ul>
+
+        {/* Mobile Buttons */}
+        <div className="mt-4 flex flex-col gap-3">
+          <Link
+            href="/login"
+            className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+          >
+            Login
+          </Link>
+
+          <button
+            onClick={() => signOut({ callbackUrl: '/' })}
+            className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+          >
+            Logout
+          </button>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
