@@ -24,7 +24,7 @@ export default function LoginPage() {
         showConfirmButton: false,
         timer: 1500,
       });
-      router.push('/'); // Redirect to home
+      router.push('/');
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -44,7 +44,7 @@ export default function LoginPage() {
         showConfirmButton: false,
         timer: 1500,
       });
-      router.push('/'); // Redirect to home
+      router.push('/');
     } catch (error) {
       Swal.fire({
         icon: 'error',

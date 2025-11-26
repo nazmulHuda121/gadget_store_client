@@ -11,7 +11,7 @@ export default function Navbar() {
   const { user } = useContext(AuthContext);
 
   return (
-    <nav className="w-full backdrop-blur bg-white/80 shadow-sm sticky top-0 z-50">
+    <nav className="w-full backdrop-blur bg-white/90 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="text-3xl font-extrabold text-purple-600">

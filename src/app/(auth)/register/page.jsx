@@ -2,21 +2,20 @@
 
 import { FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
-import { use } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '@/AuthProvider/AuthContext';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
-  const { createUser } = use(AuthContext);
-  const router = useRouter;
+  const { createUser } = useContext(AuthContext);
+  const router = useRouter();
+
   const handleRegister = (e) => {
     e.preventDefault();
 
-    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(name, email, password);
 
     // Password validation
     const errors = [];
@@ -31,21 +30,26 @@ export default function RegisterPage() {
       errors.forEach((err) => toast.error(err));
       return;
     }
+
+    // Create user
     createUser(email, password)
-      .then(() =>
+      .then(() => {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'User has been create',
+          title: 'User created successfully!',
           showConfirmButton: false,
           timer: 1500,
-        })
-      )
+        });
 
-      .then((err) => {
-        console.log('error is', err);
+        router.push('/');
+      })
+      .catch((err) => {
+        err.message;
+        console.log('Registration error:', err);
       });
   };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
@@ -107,7 +111,10 @@ export default function RegisterPage() {
           </div>
 
           {/* Google Signup */}
-          <button className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3">
+          <button
+            type="button"
+            className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3"
+          >
             <FaGoogle className="text-xl" />
             Continue with Google
           </button>
