@@ -12,16 +12,16 @@ export default function ProductCard({ product }) {
           className="w-full h-52 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110"
         />
       </div>
-      <h3 className="text-2xl font-bold text-white mt-5 transition-colors duration-300 group-hover:text-blue-400">
+      <h3 className="text-2xl font-bold text-white mt-5 transition-colors duration-300">
         {product.title}
       </h3>
       <p className="text-gray-300 text-sm mt-3 line-clamp-2">
         {product.shortDesc}
       </p>
       <div className="flex justify-between items-center mt-5">
-        <p className="text-blue-400 font-bold text-lg">${product.price}</p>
+        <p className="text-purple-300 font-bold text-lg">${product.price}</p>
         <Link href={`/products/${product._id}`}>
-          <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 transition-all text-white px-4 py-2 rounded-xl shadow-lg">
+          <button className="flex items-center gap-2 bg-blue-500 hover:bg-blue-700 transition-all text-white px-4 py-2 rounded-xl shadow-lg cursor-pointer">
             <FaEye /> View Details
           </button>
         </Link>

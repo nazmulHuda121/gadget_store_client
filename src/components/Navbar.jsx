@@ -14,30 +14,36 @@ export default function Navbar() {
     <>
       <Link
         href="/"
-        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+        className="hover:text-purple-600  lg:hover:scale-110 transition"
       >
         Home
       </Link>
 
       <Link
         href="/manage-products"
-        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+        className="hover:text-purple-600  lg:hover:scale-110 transition"
       >
         Manage Products
       </Link>
 
       <Link
         href="/add-product"
-        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+        className="hover:text-purple-600  lg:hover:scale-110 transition"
       >
         Add Product
       </Link>
 
       <Link
         href="/contact"
-        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+        className="hover:text-purple-600  lg:hover:scale-110 transition"
       >
         Contact
+      </Link>
+      <Link
+        href="/service"
+        className="hover:text-purple-600  lg:hover:scale-110 transition"
+      >
+        Service
       </Link>
     </>
   );
@@ -83,30 +89,32 @@ export default function Navbar() {
         </button>
       </div>
       {/* Mobile Menu */}
-      <div className="md:hidden bg-white px-4 pb-4 shadow-inner">
-        <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
-          {links}
-        </ul>
+      {open && (
+        <div className="md:hidden bg-white px-4 pb-4 shadow-inner transition-all duration-300">
+          <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
+            {links}
+          </ul>
 
-        {/* Mobile Buttons */}
-        <div className="mt-4 flex flex-col gap-3">
-          {user ? (
-            <button
-              onClick={() => signOut(auth)}
-              className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link
-              href="/login"
-              className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
-            >
-              Login
-            </Link>
-          )}
+          {/* Mobile Buttons */}
+          <div className="mt-4 flex flex-col gap-3">
+            {user ? (
+              <button
+                onClick={() => signOut(auth)}
+                className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+              >
+                Login
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
