@@ -1,10 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AuthContext } from '@/AuthProvider/AuthContext'; // your context
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase/firebase.config';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user } = useContext(AuthContext);
 
   return (
     <nav className="w-full backdrop-blur bg-white/80 shadow-sm sticky top-0 z-50">
@@ -20,42 +24,47 @@ export default function Navbar() {
             Home
           </Link>
 
-          <>
-            <Link
-              href="/manage-products"
-              className="hover:text-purple-600 transition"
-            >
-              Manage Products
-            </Link>
+          {/* Only show if user is logged in */}
+          {user && (
+            <>
+              <Link
+                href="/manage-products"
+                className="hover:text-purple-600 transition"
+              >
+                Manage Products
+              </Link>
 
-            <Link
-              href="/add-product"
-              className="hover:text-purple-600 transition"
-            >
-              Add Product
-            </Link>
-          </>
+              <Link
+                href="/add-product"
+                className="hover:text-purple-600 transition"
+              >
+                Add Product
+              </Link>
+            </>
+          )}
 
-          <li className="hover:text-purple-600 transition cursor-pointer">
+          <Link href="/contact" className="hover:text-purple-600 transition">
             Contact
-          </li>
+          </Link>
         </ul>
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex gap-4">
-          <Link
-            href="/login"
-            className="px-6 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
-          >
-            Log In
-          </Link>
-
-          <button
-            onClick={() => signOut({ callbackUrl: '/' })}
-            className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-          >
-            Logout
-          </button>
+          {user ? (
+            <button
+              onClick={() => signOut(auth)}
+              className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              href="/login"
+              className="px-6 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+            >
+              Login
+            </Link>
+          )}
         </div>
 
         {/* Mobile Hamburger */}
@@ -70,51 +79,56 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-
-      <div className="md:hidden bg-white px-4 pb-4 shadow-inner">
-        <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
-          <Link href="/" className="hover:text-purple-600 transition">
-            Home
-          </Link>
-
-          <>
-            <Link
-              href="/manageproduct"
-              className="hover:text-purple-600 transition"
-            >
-              Manage Products
+      {open && (
+        <div className="md:hidden bg-white px-4 pb-4 shadow-inner">
+          <ul className="flex flex-col gap-4 text-lg font-medium text-gray-700 pt-2">
+            <Link href="/" className="hover:text-purple-600 transition">
+              Home
             </Link>
 
-            <Link
-              href="/addproduct"
-              className="hover:text-purple-600 transition"
-            >
-              Add Product
+            {user && (
+              <>
+                <Link
+                  href="/manage-products"
+                  className="hover:text-purple-600 transition"
+                >
+                  Manage Products
+                </Link>
+
+                <Link
+                  href="/add-product"
+                  className="hover:text-purple-600 transition"
+                >
+                  Add Product
+                </Link>
+              </>
+            )}
+
+            <Link href="/contact" className="hover:text-purple-600 transition">
+              Contact
             </Link>
-          </>
+          </ul>
 
-          <Link href="/contact" className="hover:text-purple-600 transition">
-            Contact
-          </Link>
-        </ul>
-
-        {/* Mobile Buttons */}
-        <div className="mt-4 flex flex-col gap-3">
-          <Link
-            href="/login"
-            className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
-          >
-            Login
-          </Link>
-
-          <button
-            onClick={() => signOut({ callbackUrl: '/' })}
-            className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-          >
-            Logout
-          </button>
+          {/* Mobile Buttons */}
+          <div className="mt-4 flex flex-col gap-3">
+            {user ? (
+              <button
+                onClick={() => signOut(auth)}
+                className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className="w-full px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-100 transition"
+              >
+                Login
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

@@ -2,8 +2,50 @@
 
 import { FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import { use } from 'react';
+import { AuthContext } from '@/AuthProvider/AuthContext';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
+  const { createUser } = use(AuthContext);
+  const router = useRouter;
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, email, password);
+
+    // Password validation
+    const errors = [];
+    if (!/[A-Z]/.test(password))
+      errors.push('At least one uppercase letter required');
+    if (!/[a-z]/.test(password))
+      errors.push('At least one lowercase letter required');
+    if (password.length < 6)
+      errors.push('Password must be at least 6 characters long');
+
+    if (errors.length > 0) {
+      errors.forEach((err) => toast.error(err));
+      return;
+    }
+    createUser(email, password)
+      .then(() =>
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'User has been create',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      )
+
+      .then((err) => {
+        console.log('error is', err);
+      });
+  };
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
@@ -18,53 +60,58 @@ export default function RegisterPage() {
           Create Account
         </h2>
 
-        {/* Name */}
-        <div className="mb-5">
-          <label className="text-white font-medium">Full Name</label>
-          <input
-            type="text"
-            className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            placeholder="Enter your name"
-          />
-        </div>
+        <form onSubmit={handleRegister}>
+          {/* Name */}
+          <div className="mb-5">
+            <label className="text-white font-medium">Full Name</label>
+            <input
+              name="name"
+              type="text"
+              className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              placeholder="Enter your name"
+            />
+          </div>
 
-        {/* Email */}
-        <div className="mb-5">
-          <label className="text-white font-medium">Email</label>
-          <input
-            type="email"
-            className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            placeholder="Enter your email"
-          />
-        </div>
+          {/* Email */}
+          <div className="mb-5">
+            <label className="text-white font-medium">Email</label>
+            <input
+              name="email"
+              type="email"
+              className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              placeholder="Enter your email"
+            />
+          </div>
 
-        {/* Password */}
-        <div className="mb-6">
-          <label className="text-white font-medium">Password</label>
-          <input
-            type="password"
-            className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
-            placeholder="Create a password"
-          />
-        </div>
+          {/* Password */}
+          <div className="mb-6">
+            <label className="text-white font-medium">Password</label>
+            <input
+              name="password"
+              type="password"
+              className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
+              placeholder="Create a password"
+            />
+          </div>
 
-        {/* Register Button */}
-        <button className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold text-lg hover:opacity-90 transition">
-          Register
-        </button>
+          {/* Register Button */}
+          <button className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold text-lg hover:opacity-90 transition">
+            Register
+          </button>
 
-        {/* Or divider */}
-        <div className="mt-6 flex items-center gap-3 text-gray-300">
-          <div className="flex-1 h-px bg-gray-400/50"></div>
-          <span>OR</span>
-          <div className="flex-1 h-px bg-gray-400/50"></div>
-        </div>
+          {/* Or divider */}
+          <div className="mt-6 flex items-center gap-3 text-gray-300">
+            <div className="flex-1 h-px bg-gray-400/50"></div>
+            <span>OR</span>
+            <div className="flex-1 h-px bg-gray-400/50"></div>
+          </div>
 
-        {/* Google Signup */}
-        <button className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3">
-          <FaGoogle className="text-xl" />
-          Continue with Google
-        </button>
+          {/* Google Signup */}
+          <button className="w-full mt-6 py-3 border border-white/40 bg-white/10 rounded-xl text-white font-medium hover:bg-white/20 transition flex items-center justify-center gap-3">
+            <FaGoogle className="text-xl" />
+            Continue with Google
+          </button>
+        </form>
 
         {/* Login Link */}
         <p className="text-center text-gray-300 mt-6">

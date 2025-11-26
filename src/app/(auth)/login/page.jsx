@@ -2,19 +2,58 @@
 
 import { FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
-import { use } from 'react';
+import { useState, useContext } from 'react';
+import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/AuthProvider/AuthContext';
+import Swal from 'sweetalert2';
 
 export default function LoginPage() {
-  const { logedInWithGoogle } = use(AuthContext);
-  const handleGoogleLogin = () => {
-    console.log('.......');
-    logedInWithGoogle()
-      .then(() => {
-        console.log('Loged in successfully complete');
-      })
-      .then((err) => console.log(err));
+  const { loginUser, logedInWithGoogle } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  // Email/Password login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await loginUser(email, password);
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.push('/'); // Redirect to home
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: error.message,
+      });
+    }
   };
+
+  // Google Login
+  const handleGoogleLogin = async () => {
+    try {
+      await logedInWithGoogle();
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.push('/'); // Redirect to home
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Google Login Failed',
+        text: error.message,
+      });
+    }
+  };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
@@ -29,30 +68,37 @@ export default function LoginPage() {
           Welcome Back
         </h2>
 
-        {/* Email */}
-        <div className="mb-5">
-          <label className="text-white font-medium">Email</label>
-          <input
-            type="email"
-            className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your email"
-          />
-        </div>
+        {/* Form */}
+        <form onSubmit={handleLogin}>
+          {/* Email */}
+          <div className="mb-5">
+            <label className="text-white font-medium">Email</label>
+            <input
+              type="email"
+              className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        {/* Password */}
-        <div className="mb-6">
-          <label className="text-white font-medium">Password</label>
-          <input
-            type="password"
-            className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            placeholder="Enter your password"
-          />
-        </div>
+          {/* Password */}
+          <div className="mb-6">
+            <label className="text-white font-medium">Password</label>
+            <input
+              type="password"
+              className="w-full mt-2 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
 
-        {/* Login Button */}
-        <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold text-lg hover:opacity-90 transition">
-          Login
-        </button>
+          {/* Login Button */}
+          <button className="w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-semibold text-lg hover:opacity-90 transition">
+            Login
+          </button>
+        </form>
 
         {/* Or divider */}
         <div className="mt-6 flex items-center gap-3 text-gray-300">
