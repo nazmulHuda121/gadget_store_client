@@ -49,7 +49,7 @@ export default function ContactPage() {
       className="min-h-screen bg-cover bg-center bg-no-repeat pt-32 pb-16 px-4"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2100')",
+          "url('https://images.unsplash.com/photo-1515940175183-6798529cb860?q=80&w=2829&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
       }}
     >
       <div className="bg-black/60 backdrop-blur-2xl max-w-5xl mx-auto rounded-3xl p-10 shadow-2xl border border-white/20">

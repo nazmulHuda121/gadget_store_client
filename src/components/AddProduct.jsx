@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import ProtectedRoute from './ProtectedRoute';
 
 export default function AddProduct() {
   const [form, setForm] = useState({
@@ -64,130 +65,134 @@ export default function AddProduct() {
   };
 
   return (
-    <div
-      className=" mx-auto px-6 py-16 min-h-screen flex items-center justify-center"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1593642532973-d31b6557fa68?q=80&w=1200')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="w-3xl backdrop-blur-xl bg-white/10 shadow-2xl p-10 rounded-2xl border border-white/30">
-        <h1 className="text-4xl font-bold text-white mb-10 text-center drop-shadow-lg">
-          Add New Product
-        </h1>
+    <ProtectedRoute>
+      <div
+        className=" mx-auto px-6 py-16 min-h-screen flex items-center justify-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1526738549149-8e07eca6c147?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="w-3xl backdrop-blur-xl bg-white/10 shadow-2xl p-10 rounded-2xl border border-white/30">
+          <h1 className="text-4xl font-bold text-white mb-10 text-center drop-shadow-lg">
+            Add New Product
+          </h1>
 
-        <form onSubmit={handleSubmit}>
-          {/* Title */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Title *
-            </label>
-            <input
-              name="title"
-              value={form.title}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
-              placeholder="Product title"
-            />
-          </div>
+          <form onSubmit={handleSubmit}>
+            {/* Title */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Title *
+              </label>
+              <input
+                name="title"
+                value={form.title}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+                placeholder="Product title"
+              />
+            </div>
 
-          {/* Short Description */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Short Description *
-            </label>
-            <input
-              name="shortDesc"
-              value={form.shortDesc}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
-              placeholder="Short description"
-            />
-          </div>
+            {/* Short Description */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Short Description *
+              </label>
+              <input
+                name="shortDesc"
+                value={form.shortDesc}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+                placeholder="Short description"
+              />
+            </div>
 
-          {/* Full Description */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Full Description *
-            </label>
-            <textarea
-              name="fullDesc"
-              value={form.fullDesc}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 h-32 focus:ring-2 focus:ring-purple-500"
-              placeholder="Full product details..."
-            ></textarea>
-          </div>
+            {/* Full Description */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Full Description *
+              </label>
+              <textarea
+                name="fullDesc"
+                value={form.fullDesc}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 h-32 focus:ring-2 focus:ring-purple-500"
+                placeholder="Full product details..."
+              ></textarea>
+            </div>
 
-          {/* Price */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Price *
-            </label>
-            <input
-              type="number"
-              name="price"
-              value={form.price}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
-              placeholder="Product price"
-            />
-          </div>
+            {/* Price */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Price *
+              </label>
+              <input
+                type="number"
+                name="price"
+                value={form.price}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+                placeholder="Product price"
+              />
+            </div>
 
-          {/* Date */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">Date</label>
-            <input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
+            {/* Date */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
 
-          {/* Priority */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Priority
-            </label>
-            <select
-              name="priority"
-              value={form.priority}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+            {/* Priority */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Priority
+              </label>
+              <select
+                name="priority"
+                value={form.priority}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+
+            {/* Image URL */}
+            <div className="mb-5">
+              <label className="block mb-1 font-semibold text-white">
+                Image URL
+              </label>
+              <input
+                name="imageUrl"
+                value={form.imageUrl}
+                onChange={handleChange}
+                className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-lg shadow-lg transition"
             >
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-
-          {/* Image URL */}
-          <div className="mb-5">
-            <label className="block mb-1 font-semibold text-white">
-              Image URL
-            </label>
-            <input
-              name="imageUrl"
-              value={form.imageUrl}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border text-black bg-white/70 focus:ring-2 focus:ring-purple-500"
-              placeholder="https://example.com/image.jpg"
-            />
-          </div>
-
-          {/* Submit */}
-          <button
-            type="submit"
-            className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white text-lg font-semibold rounded-lg shadow-lg transition"
-          >
-            Add Product
-          </button>
-        </form>
+              Add Product
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </ProtectedRoute>
   );
 }

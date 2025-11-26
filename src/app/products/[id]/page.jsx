@@ -1,4 +1,6 @@
 import ProtectedRoute from '@/components/ProtectedRoute';
+import { SlEnergy } from 'react-icons/sl';
+import { BsCalendarDate } from 'react-icons/bs';
 
 export default async function ProductDetails({ params }) {
   const { id } = await params;
@@ -58,24 +60,33 @@ export default async function ProductDetails({ params }) {
 
               {/* Additional Info */}
               <div className="flex flex-col gap-3">
-                <p className="text-gray-300">
-                  📅 <span className="font-medium text-white">Added On:</span>{' '}
-                  {product.date}
-                </p>
+                <div className="flex items-center gap-1">
+                  <BsCalendarDate />
+
+                  <p className="text-gray-300">
+                    <span className="font-medium text-white">Added On:</span>{' '}
+                    {product.date}
+                  </p>
+                </div>
 
                 <p className="text-gray-300">
-                  ⚡ <span className="font-medium text-white">Priority:</span>{' '}
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      product.priority === 'high'
-                        ? 'bg-red-600 text-white'
-                        : product.priority === 'medium'
-                        ? 'bg-yellow-500 text-black'
-                        : 'bg-green-500 text-black'
-                    }`}
-                  >
-                    {product.priority}
-                  </span>
+                  <div className="flex items-center gap-0.5">
+                    <SlEnergy />
+                    <span className="font-medium text-white">
+                      Priority:
+                    </span>{' '}
+                    <span
+                      className={`ml-2 px-3 py-1 rounded-full text-sm font-semibold ${
+                        product.priority === 'high'
+                          ? 'bg-red-600 text-white'
+                          : product.priority === 'medium'
+                          ? 'bg-yellow-500 text-black'
+                          : 'bg-green-500 text-black'
+                      }`}
+                    >
+                      {product.priority}
+                    </span>
+                  </div>
                 </p>
               </div>
 

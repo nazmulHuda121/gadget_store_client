@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useContext } from 'react';
-import { AuthContext } from '@/AuthProvider/AuthContext'; // your context
+import { AuthContext } from '@/AuthProvider/AuthContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '@/firebase/firebase.config';
 
@@ -12,22 +12,31 @@ export default function Navbar() {
 
   const links = (
     <>
-      <Link href="/" className="hover:text-purple-600 transition">
+      <Link
+        href="/"
+        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+      >
         Home
       </Link>
 
       <Link
         href="/manage-products"
-        className="hover:text-purple-600 transition"
+        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
       >
         Manage Products
       </Link>
 
-      <Link href="/add-product" className="hover:text-purple-600 transition">
+      <Link
+        href="/add-product"
+        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+      >
         Add Product
       </Link>
 
-      <Link href="/contact" className="hover:text-purple-600 transition">
+      <Link
+        href="/contact"
+        className="hover:text-purple-600 hover:underline hover:scale-110 transition"
+      >
         Contact
       </Link>
     </>
@@ -42,9 +51,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-lg font-semibold text-gray-700">
-          {links}
-        </ul>
+        <ul className="hidden md:flex gap-8 text-lg text-gray-900">{links}</ul>
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex gap-4">
