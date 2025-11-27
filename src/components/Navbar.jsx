@@ -40,7 +40,7 @@ export default function Navbar() {
         Contact
       </Link>
       <Link
-        href="/service"
+        href="/servic"
         className="hover:text-purple-600  lg:hover:scale-110 transition"
       >
         Service

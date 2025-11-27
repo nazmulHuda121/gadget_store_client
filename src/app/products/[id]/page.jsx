@@ -1,4 +1,3 @@
-import ProtectedRoute from '@/components/ProtectedRoute';
 import { SlEnergy } from 'react-icons/sl';
 import { BsCalendarDate } from 'react-icons/bs';
 
