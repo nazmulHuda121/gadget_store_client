@@ -2,13 +2,13 @@
 
 import { FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
-import { useState, useContext } from 'react';
+import { useState, use } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/AuthProvider/AuthContext';
 import Swal from 'sweetalert2';
 
 export default function LoginPage() {
-  const { loginUser, logedInWithGoogle } = useContext(AuthContext);
+  const { loginUser, logedInWithGoogle } = use(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
