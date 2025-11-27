@@ -55,7 +55,7 @@ export default function RegisterPage() {
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&q=80&w=2000')",
+          "url('https://images.unsplash.com/photo-1519335553051-96f1218cd5fa?q=80&w=2140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
       }}
     >
       <div className="bg-black/60 backdrop-blur-xl p-10 rounded-3xl shadow-2xl w-full max-w-md border border-white/20">
