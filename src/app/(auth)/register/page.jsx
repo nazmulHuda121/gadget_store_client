@@ -50,6 +50,26 @@ export default function RegisterPage() {
       });
   };
 
+  // Google Login
+  const handleGoogleLogin = async () => {
+    try {
+      await logedInWithGoogle();
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.push('/');
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Google Login Failed',
+        text: error.message,
+      });
+    }
+  };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
