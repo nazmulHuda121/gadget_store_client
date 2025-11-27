@@ -1,7 +1,9 @@
 import ProductCard from '@/components/ProductCard';
 
 export default async function Products() {
-  const res = await fetch(`http://localhost:5000/products`);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${API_URL}/products`);
   const data = await res.json();
   const products = data.result.slice(0, 6);
 

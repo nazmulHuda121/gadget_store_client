@@ -9,14 +9,14 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
   const router = useRouter();
-
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   // Fetch all products
   useEffect(() => {
-    fetch('http://localhost:5000/products')
+    fetch(`${API_URL}/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data.result))
       .catch((err) => console.error(err));
-  }, []);
+  }, [API_URL]);
 
   // Delete
   const handleDelete = (id) => {
@@ -30,7 +30,7 @@ const ManageProducts = () => {
       confirmButtonText: 'Yes! Delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/products/${id}`, { method: 'DELETE' })
+        fetch(`${API_URL}/products/${id}`, { method: 'DELETE' })
           .then((res) => res.json())
           .then((data) => {
             if (data.success) {

@@ -3,8 +3,9 @@ import { BsCalendarDate } from 'react-icons/bs';
 
 export default async function ProductDetails({ params }) {
   const { id } = await params;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-  const res = await fetch(`http://localhost:5000/products/${id}`, {
+  const res = await fetch(`${API_URL}/products/${id}`, {
     cache: 'no-store',
   });
 
