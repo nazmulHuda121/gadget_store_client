@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase/firebase.config';
 import { AuthContext } from './AuthContext';
-import { setCookie } from 'cookies-next';
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -53,16 +52,6 @@ const AuthProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      // login successful → set cookie
-      setCookie('user', JSON.stringify(user), { path: '/' });
-    } else {
-      // logout → remove cookie
-      setCookie('user', '', { path: '/' });
-    }
-  }, [user]);
 
   const userInfo = {
     user,
